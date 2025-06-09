@@ -1,0 +1,529 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%); /* Deep dark blue/purple gradient */
+    color: #E0E0E0; /* Light gray for general text */
+    margin: 0;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.container {
+    background-color: rgba(42, 42, 74, 0.9); /* Darker, slightly translucent background */
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    text-align: center;
+    width: 100%;
+    max-width: 900px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle light border */
+}
+
+h1 {
+    color: #FFFFFF; /* Pure white for main heading */
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    color: #B0B0B0; /* Slightly darker gray for paragraphs */
+    margin-bottom: 30px;
+    line-height: 1.8;
+    font-size: 1.1em;
+}
+
+.matrix-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.matrix-bracket {
+    font-size: 90px;
+    line-height: 0.8;
+    color: #E0E0E0; /* Light gray for brackets */
+    font-family: 'Times New Roman', serif;
+    font-weight: 300;
+    padding: 0 8px;
+    opacity: 0.8;
+}
+
+.matrix-bracket.left::before { content: '['; }
+.matrix-bracket.right::before { content: ']'; }
+
+.matrix-input {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 320px;
+}
+
+.matrix-input input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1); /* Dark transparent background for inputs */
+    color: #FFFFFF; /* White text for input values */
+    font-size: 1.2em;
+    text-align: center;
+    box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.3); /* Darker inset shadow */
+    transition: all 0.3s ease;
+}
+
+.matrix-input input:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(137, 207, 240, 0.7), inset 0 3px 8px rgba(0, 0, 0, 0.4); /* Light blue focus shadow */
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly lighter on focus */
+}
+
+button {
+    background-color: #00BFFF; /* Deep Sky Blue for the main button */
+    color: #fff;
+    border: none;
+    padding: 18px 35px;
+    border-radius: 10px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); /* Deeper shadow */
+    margin-bottom: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #1E90FF; /* Dodger Blue on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.45);
+}
+
+.results {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 35px;
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .results {
+        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    }
+}
+
+.result-box {
+    background-color: rgba(32, 32, 58, 0.9); /* Dark blue background for result boxes */
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle border */
+    transition: transform 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-5px);
+}
+
+.result-box h2 {
+    color: #89CFF0; /* Light blue for result headings */
+    margin-bottom: 20px;
+    font-size: 1.8em;
+    font-weight: 600;
+}
+
+.result-box p {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #C0C0C0; /* Light gray for result paragraphs */
+    margin-bottom: 15px;
+}
+
+.result-box p span {
+    font-weight: 700;
+    font-size: 1.4em;
+    color: #FFFFFF; /* White for final numerical results */
+}
+
+.matrix-output {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: #FFFFFF; /* White for output matrix numbers */
+    background-color: rgba(0, 0, 0, 0.3); /* Darker transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.matrix-output div {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    border-radius: 6px;
+    background-color: rgba(0, 0, 0, 0.2); /* Darker cell background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Gaya untuk visualisasi Sarrus --- */
+.sarrus-explanation {
+    text-align: left;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.2); /* Dark transparent background */
+    margin-top: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sarrus-explanation h3 {
+    color: #A0D9D9; /* Light teal for sub-headings */
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.sarrus-explanation p {
+    font-size: 1.1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #C0C0C0;
+    line-height: 1.7;
+}
+
+.sarrus-explanation p.sarrus-sum {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #89CFF0; /* Light blue for sums */
+    margin-top: 20px;
+    margin-bottom: 25px;
+}
+
+.sarrus-explanation p.final-determinant {
+    font-size: 2.2em;
+    font-weight: 800;
+    color: #00FF7F; /* Spring Green for final determinant */
+    margin-top: 30px;
+    text-shadow: 0 0 10px rgba(0, 255, 127, 0.5);
+}
+
+.extended-matrix {
+    display: grid;
+    grid-template-columns: repeat(5, max-content);
+    gap: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.25); /* Darker background for extended matrix */
+    border-radius: 12px;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.extended-matrix .cell {
+    padding: 8px;
+    min-width: 40px;
+    position: relative;
+    z-index: 2;
+    color: #FFFFFF; /* White for extended matrix numbers */
+}
+
+.extended-matrix .copy-col {
+    color: #A0D9D9; /* Light teal for copied columns */
+    opacity: 0.7;
+}
+
+/* --- Gaya Panah Sarrus --- */
+.sarrus-line {
+    position: absolute;
+    height: 4px;
+    transform-origin: left center;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.sarrus-line.positive {
+    background-color: #E74C3C; /* Red */
+}
+
+.sarrus-line.positive::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 12px solid #E74C3C;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sarrus-line.negative {
+    background-color: #3498DB; /* Blue */
+}
+
+.sarrus-line.negative::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right: 12px solid #3498DB;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.sarrus-product-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.sarrus-product-item {
+    font-size: 1.3em;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* Subtle border */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.sarrus-positive-products .sarrus-product-item {
+    color: #90EE90; /* Light Green */
+}
+
+.sarrus-negative-products .sarrus-product-item {
+    color: #FFB6C1; /* Light Pink */
+}
+
+/* --- Gaya untuk penjelasan minor/kofaktor --- */
+.minor-cofactor-explanation {
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 35px;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    border-radius: 15px;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+    color: #C0C0C0;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.minor-cofactor-explanation h3 {
+    color: #A0D9D9;
+    margin-top: 15px;
+    margin-bottom: 12px;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+
+.minor-cofactor-explanation .submatrix-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    margin: 15px 0;
+    gap: 8px;
+    color: #FFFFFF; /* White for submatrix determinant brackets */
+}
+
+.minor-cofactor-explanation .submatrix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    border-left: 3px solid #E0E0E0; /* Light gray bracket lines */
+    border-right: 3px solid #E0E0E0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light transparent background for submatrix grid */
+}
+
+.minor-cofactor-explanation .submatrix-grid .cell {
+    padding: 5px;
+    text-align: center;
+    color: #FFFFFF; /* White for submatrix numbers */
+    font-weight: 500;
+}
+
+.minor-cofactor-explanation .calculation-step {
+    margin-top: 8px;
+    font-weight: 600;
+    color: #89CFF0; /* Light blue for calculation steps */
+    font-size: 1.15em;
+}
+
+.minor-cofactor-explanation .cofactor-sign {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+hr {
+    border-color: rgba(255,255,255,0.1);
+    margin: 25px auto;
+    width: 60%;
+}
+
+/* --- Gaya untuk Navigasi Langkah (diulang agar konsisten dengan tema gelap) --- */
+.step-navigation {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.step-navigation button {
+    background-color: #6A5ACD; /* Slate Blue for step navigation buttons */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0; /* Override margin-bottom from main button */
+}
+
+.step-navigation button:hover:not(:disabled) {
+    background-color: #7B68EE; /* Medium Slate Blue on hover */
+    transform: translateY(-2px);
+}
+
+.step-navigation button:disabled {
+    background-color: #555555; /* Darker gray for disabled */
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* --- Gaya untuk highlight langkah Sarrus (diulang agar konsisten) --- */
+.sarrus-step-item {
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+.sarrus-step-item.active {
+    opacity: 1;
+}
+
+/* Sembunyikan semua elemen penjelasan Sarrus di awal, akan ditampilkan via JS */
+/* Tetap pertahankan opacity 0 untuk elemen yang dikontrol JS */
+#sarrusPositiveProducts,
+#sarrusNegativeProducts,
+#sarrusPositiveSum,
+#sarrusNegativeSum,
+#determinantResult {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.sarrus-explanation h3, .sarrus-explanation p.sarrus-sum, .sarrus-explanation p.final-determinant {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Untuk panah Sarrus, defaultnya juga opacity 0 */
+.sarrus-line {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.sarrus-line.active {
+    opacity: 1;
+}
+
+/* Gaya untuk visualisasi minor/kofaktor */
+.minor-step {
+    opacity: 0; /* Ubah ke 0 agar disembunyikan sepenuhnya oleh JS */
+    transition: opacity 0.5s ease;
+    display: none; /* Tambahkan ini agar tidak makan tempat saat opacity 0 */
+}
+
+.minor-step.active {
+    opacity: 1;
+    display: block; /* Atau display lain yang sesuai */
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin-top: 10px;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .matrix-input {
+        gap: 10px;
+    }
+    .matrix-input input {
+        padding: 10px;
+        font-size: 1em;
+    }
+    button {
+        padding: 12px 25px;
+        font-size: 1.1em;
+        margin-bottom: 30px;
+    }
+    .matrix-bracket {
+        font-size: 70px;
+    }
+    .result-box h2 {
+        font-size: 1.5em;
+    }
+    .sarrus-explanation h3, .minor-cofactor-explanation h3 {
+        font-size: 1.3em;
+    }
+    .sarrus-explanation p.final-determinant {
+        font-size: 1.8em;
+    }
+    .extended-matrix {
+        gap: 8px 10px;
+        font-size: 1.2em;
+        padding: 15px;
+    }
+    .sarrus-line.positive::after, .sarrus-line.negative::after {
+        border-top-width: 5px;
+        border-bottom-width: 5px;
+        border-left-width: 8px;
+        border-right-width: 8px;
+        right: -8px;
+        left: -8px;
+    }
+}

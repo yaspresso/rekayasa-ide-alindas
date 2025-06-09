@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Matriks Interaktif 3x3 - Media Pembelajaran</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Kalkulator Matriks 3x3 Interaktif</h1>
+        <p>Masukkan angka-angka matriks di bawah ini untuk menghitung determinan (metode Sarrus), matriks minor, dan
+            matriks kofaktor 3x3.</p>
+
+        <div class="matrix-input-wrapper">
+            <div class="matrix-bracket left"></div>
+            <div class="matrix-input">
+                <input type="number" id="a11" value="2">
+                <input type="number" id="a12" value="-1">
+                <input type="number" id="a13" value="3">
+                <input type="number" id="a21" value="4">
+                <input type="number" id="a22" value="-2">
+                <input type="number" id="a23" value="-4">
+                <input type="number" id="a31" value="1">
+                <input type="number" id="a32" value="5">
+                <input type="number" id="a33" value="-3">
+            </div>
+            <div class="matrix-bracket right"></div>
+        </div>
+        <button onclick="calculateMatrix()">Hitung Matriks</button>
+
+        <div class="results">
+            <div class="result-box full-width">
+                <h2>Perhitungan Determinan (Metode Sarrus)</h2>
+                <div class="sarrus-explanation">
+                    <p>Matriks diperluas dengan dua kolom pertama untuk mempermudah visualisasi:</p>
+                    <div class="extended-matrix" id="extendedMatrixDisplay">
+                    </div>
+
+                    <div class="step-navigation">
+                        <button id="prevSarrusStep" onclick="navigateSarrus(-1)" disabled>Langkah Sebelumnya</button>
+                        <button id="nextSarrusStep" onclick="navigateSarrus(1)">Langkah Selanjutnya</button>
+                    </div>
+
+                    <h3>Produk Diagonal Positif (Kanan Bawah)</h3>
+                    <div class="sarrus-product-row sarrus-positive-products" id="sarrusPositiveProducts">
+                    </div>
+                    <p class="sarrus-sum">Total Positif: <span id="sarrusPositiveSum"></span></p>
+
+                    <h3>Produk Diagonal Negatif (Kiri Bawah)</h3>
+                    <div class="sarrus-product-row sarrus-negative-products" id="sarrusNegativeProducts">
+                    </div>
+                    <p class="sarrus-sum">Total Negatif: <span id="sarrusNegativeSum"></span></p>
+
+                    <p>Determinan = Total Positif - Total Negatif</p>
+                    <p class="final-determinant">Determinan = <span id="determinantResult"></span></p>
+                </div>
+            </div>
+
+            <div class="result-box full-width">
+                <h2>Perhitungan Matriks Minor</h2>
+                <div class="minor-cofactor-explanation" id="minorExplanation">
+                </div>
+                <div class="matrix-output" id="minorMatrixResult"></div>
+            </div>
+
+            <div class="result-box full-width">
+                <h2>Perhitungan Matriks Kofaktor</h2>
+                <div class="minor-cofactor-explanation" id="cofactorExplanation">
+                </div>
+                <div class="matrix-output" id="cofactorMatrixResult"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
